@@ -206,7 +206,7 @@ function! s:Highlight_Matching_Pair() "{{{
 				let text = strpart(text, 0, s:echo_length) . "..."
 			endif
 			redraw | echo text
-			endif
+		endif
 	elseif m_lnum > c_lnum && 'i' != mode()
 		" The matching paren is BELOW cursor
 		let text = s:TreatText(m_lnum)
