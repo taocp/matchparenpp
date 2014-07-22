@@ -196,25 +196,25 @@ function! s:Highlight_Matching_Pair() "{{{
 		endwhile
 		if i > s:stmt_thresh
 			let text = s:TreatText(m_lnum)
-            if strlen(text) > s:echo_length
-                let text = strpart(text, 0, s:echo_length) . "..."
-            endif
+			if strlen(text) > s:echo_length
+				let text = strpart(text, 0, s:echo_length) . "..."
+			endif
 			redraw | echo text
 		else
 			let text = s:TreatText(m_stmt)
-            if strlen(text) > s:echo_length
-                let text = strpart(text, 0, s:echo_length) . "..."
-            endif
-            redraw | echo text
-        endif
+			if strlen(text) > s:echo_length
+				let text = strpart(text, 0, s:echo_length) . "..."
+			endif
+			redraw | echo text
+			endif
 	elseif m_lnum > c_lnum && 'i' != mode()
 		" The matching paren is BELOW cursor
 		let text = s:TreatText(m_lnum)
 		let w:match_line_on = 1
-        if strlen(text) > s:echo_length
-            let text = strpart(text, 0, s:echo_length) . "..."
-        endif
-        redraw | echo text
+		if strlen(text) > s:echo_length
+			let text = strpart(text, 0, s:echo_length) . "..."
+		endif
+		redraw | echo text
 	endif
 endfunction "}}}
 
