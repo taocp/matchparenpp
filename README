@@ -10,3 +10,13 @@ if (condition)
 the plugin will echo the line "if (condition)" and not the lone "{".
 By default, the plugin scans the line containing the opening brace and the two lines above that, looking for the statement that begins the block, be it a loop or function definition.  If you want more or less, set it in the variable g:MP_stmt_thresh.
 
+If you write functions or blocks like this:
+void fooooooooooooooooo(int barrrrrrrrrrrrr, char *strange_isnt_it, double really_a_long_statement)
+{
+    ...
+}
+the plugin will echo the line "void fooooooooooooooooo(int barrrrrrrrrrrrr, char *strange_isnt_it, double really_a_long_...".
+By default, the plugin echo the former part of the line and uses "..." to replace the back part of the line.
+Otherwise, "Press ENTER or type command to continue" would happend.
+If you want more or less, set it in the varibale g:matchparenpp_echo_length in ~/.vimrc.
+By default, g:matchparenpp_echo_length = 85.

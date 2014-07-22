@@ -67,6 +67,10 @@ endif
 
 let g:loaded_matchparen = 1
 
+" echo_length : specify the length of echo in the status line
+let s:echo_length = 85
+let s:echo_length = exists('g:matchparenpp_echo_length') ? g:matchparenpp_echo_length : s:echo_length
+
 augroup matchparen
 	" Replace all matchparen autocommands
 	autocmd! CursorMoved,CursorMovedI * call s:Highlight_Matching_Pair()
@@ -192,16 +196,25 @@ function! s:Highlight_Matching_Pair() "{{{
 		endwhile
 		if i > s:stmt_thresh
 			let text = s:TreatText(m_lnum)
+            if strlen(text) > s:echo_length
+                let text = strpart(text, 0, s:echo_length) . "..."
+            endif
 			redraw | echo text
 		else
 			let text = s:TreatText(m_stmt)
-			redraw | echo text
-		endif
+            if strlen(text) > s:echo_length
+                let text = strpart(text, 0, s:echo_length) . "..."
+            endif
+            redraw | echo text
+        endif
 	elseif m_lnum > c_lnum && 'i' != mode()
 		" The matching paren is BELOW cursor
 		let text = s:TreatText(m_lnum)
 		let w:match_line_on = 1
-		redraw | echo text
+        if strlen(text) > s:echo_length
+            let text = strpart(text, 0, s:echo_length) . "..."
+        endif
+        redraw | echo text
 	endif
 endfunction "}}}
 
